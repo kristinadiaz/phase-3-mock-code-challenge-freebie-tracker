@@ -7,9 +7,12 @@ class Dev < ActiveRecord::Base
     end
 
     def give_away(dev, freebie)
-      # update the dev of the freebie that is being given away
-      # Freebie.update(id, :dev_id => dev.id) if freebie.includes(:freebie)
-      # Dev.all.includes(:).where('freebie.item_name = ?', freebie.item_name)
-      binding.pry
+      if self == freebie.dev
+        freebie.dev = dev
+        freebie.save
+    #  freebie.update(dev: dev) unless 
+    #  freebie.dev != self
+      end
     end
+    
 end
